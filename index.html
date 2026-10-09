@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal DZ | اعرف حقك</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172b4d;
+        }
+
+        header {
+            background: #102b46;
+            color: white;
+            padding: 22px 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            flex-wrap: wrap;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            background: #176b68;
+            color: white;
+            font-size: 15px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 45px 20px;
+            background: #e4eff5;
+        }
+
+        .hero h2 {
+            font-size: 27px;
+        }
+
+        .search {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        input {
+            width: min(100%, 380px);
+            padding: 13px;
+            border: 1px solid #b8c7d8;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .sections {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 24px 18px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #102b4610;
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #176b68;
+        }
+
+        #message {
+            text-align: center;
+            padding: 15px;
+            line-height: 1.8;
+        }
+
+        footer {
+            margin-top: 35px;
+            padding: 20px;
+            text-align: center;
+            background: #102b46;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚖️ Legal DZ</h1>
+    <p id="tagline">اعرف القانون، اعرف حقوقك</p>
+</header>
+
+<nav>
+    <button onclick="changeLanguage('ar')">العربية</button>
+    <button onclick="changeLanguage('fr')">Français</button>
+    <button onclick="changeLanguage('en')">English</button>
+</nav>
+
+<section class="hero">
+    <h2 id="welcome">مرحبًا بك في منصتك القانونية الجزائرية</h2>
+    <p id="description">
+        اكتشف المعلومات القانونية والإجراءات الإدارية بطريقة بسيطة.
+    </p>
+
+    <div class="search">
+        <input id="searchInput"
+               type="text"
+               placeholder="ابحث عن موضوع قانوني...">
+        <button onclick="searchLaw()" id="searchButton">بحث</button>
+    </div>
+</section>
+
+<section class="sections">
+
+    <div class="card">
+        <h3 id="lawTitle">📚 القوانين الجزائرية</h3>
+        <p id="lawDescription">تعرف على مختلف فروع القانون.</p>
+    </div>
+
+    <div class="card">
+        <h3 id="adminTitle">🏛️ الإجراءات الإدارية</h3>
+        <p id="adminDescription">تعرف على الإجراءات والوثائق الإدارية.</p>
+    </div>
+
+    <div class="card">
+        <h3 id="workTitle">👔 قانون العمل</h3>
+        <p id="workDescription">اكتشف حقوق العامل والتزاماته.</p>
+    </div>
+
+    <div class="card">
+        <h3 id="lawyerTitle">⚖️ دليل المحامين</h3>
+        <p id="lawyerDescription">قسم مخصص للبحث عن المحامين.</p>
+    </div>
+
+</section>
+
+<div id="message">
+    المعلومات المعروضة تعريفية، ويجب الرجوع إلى المصادر الرسمية للتحقق من النصوص القانونية.
+</div>
+
+<footer>
+    <p>Legal DZ © 2026</p>
+    <p id="footerText">منصة للمعلومات القانونية الجزائرية</p>
+</footer>
+
+<script>
+    const translations = {
+        ar: {
+            direction: "rtl",
+            tagline: "اعرف القانون، اعرف حقوقك",
+            welcome: "مرحبًا بك في منصتك القانونية الجزائرية",
+            description: "اكتشف المعلومات القانونية والإجراءات الإدارية بطريقة بسيطة.",
+            placeholder: "ابحث عن موضوع قانوني...",
+            search: "بحث",
+            lawTitle: "📚 القوانين الجزائرية",
+            lawDescription: "تعرف على مختلف فروع القانون.",
+            adminTitle: "🏛️ الإجراءات الإدارية",
+            adminDescription: "تعرف على الإجراءات والوثائق الإدارية.",
+            workTitle: "👔 قانون العمل",
+            workDescription: "اكتشف حقوق العامل والتزاماته.",
+            lawyerTitle: "⚖️ دليل المحامين",
+            lawyerDescription: "قسم مخصص للبحث عن المحامين.",
+            notice: "المعلومات المعروضة تعريفية، ويجب الرجوع إلى المصادر الرسمية للتحقق من النصوص القانونية.",
+            footer: "منصة للمعلومات القانونية الجزائرية",
+            empty: "اكتبي موضوعًا للبحث عنه.",
+            result: "هذه نسخة تجريبية. لم تتم إضافة قاعدة بيانات قانونية بعد."
+        },
+        fr: {
+            direction: "ltr",
+            tagline: "Connaissez la loi, connaissez vos droits",
+            welcome: "Bienvenue sur votre plateforme juridique algérienne",
+            description: "Découvrez les informations juridiques et les démarches administratives.",
+            placeholder: "Rechercher un sujet juridique...",
+            search: "Rechercher",
+            lawTitle: "📚 Lois algériennes",
+            lawDescription: "Découvrez les différentes branches du droit.",
+            adminTitle: "🏛️ Démarches administratives",
+            adminDescription: "Découvrez les procédures et documents administratifs.",
+            workTitle: "👔 Droit du travail",
+            workDescription: "Découvrez les droits et obligations des travailleurs.",
+            lawyerTitle: "⚖️ Annuaire des avocats",
+            lawyerDescription: "Une section dédiée à la recherche d'avocats.",
+            notice: "Ces informations sont générales. Consultez les sources officielles pour vérifier les textes juridiques.",
+            footer: "Plateforme d'information juridique algérienne",
+            empty: "Veuillez saisir un sujet.",
+            result: "Ceci est une version de démonstration. Aucune base juridique n'a encore été ajoutée."
+        },
+        en: {
+            direction: "ltr",
+            tagline: "Know the law, know your rights",
+            welcome: "Welcome to your Algerian legal platform",
+            description: "Explore legal information and administrative procedures in simple language.",
+            placeholder: "Search for a legal topic...",
+            search: "Search",
+            lawTitle: "📚 Algerian Laws",
+            lawDescription: "Explore different areas of law.",
+            adminTitle: "🏛️ Administrative Procedures",
+            adminDescription: "Learn about administrative procedures and documents.",
+            workTitle: "👔 Labor Law",
+            workDescription: "Discover workers' rights and obligations.",
+            lawyerTitle: "⚖️ Lawyers Directory",
+            lawyerDescription: "A section dedicated to finding lawyers.",
+            notice: "This information is general. Consult official sources to verify legal texts.",
+            footer: "Algerian legal information platform",
+            empty: "Please enter a topic to search for.",
+            result: "This is a demo version. A legal database has not been added yet."
+        }
+    };
+
+    let currentLanguage = "ar";
+
+    function changeLanguage(language) {
+        currentLanguage = language;
+        const t = translations[language];
+
+        document.documentElement.lang = language;
+        document.documentElement.dir = t.direction;
+
+        document.getElementById("tagline").textContent = t.tagline;
+        document.getElementById("welcome").textContent = t.welcome;
+        document.getElementById("description").textContent = t.description;
+        document.getElementById("searchInput").placeholder = t.placeholder;
+        document.getElementById("searchButton").textContent = t.search;
+        document.getElementById("lawTitle").textContent = t.lawTitle;
+        document.getElementById("lawDescription").textContent = t.lawDescription;
+        document.getElementById("adminTitle").textContent = t.adminTitle;
+        document.getElementById("adminDescription").textContent = t.adminDescription;
+        document.getElementById("workTitle").textContent = t.workTitle;
+        document.getElementById("workDescription").textContent = t.workDescription;
+        document.getElementById("lawyerTitle").textContent = t.lawyerTitle;
+        document.getElementById("lawyerDescription").textContent = t.lawyerDescription;
+        document.getElementById("message").textContent = t.notice;
+        document.getElementById("footerText").textContent = t.footer;
+    }
+
+    function searchLaw() {
+        const query = document.getElementById("searchInput").value.trim();
+        const t = translations[currentLanguage];
+
+        if (!query) {
+            document.getElementById("message").textContent = t.empty;
+            return;
+        }
+
+        document.getElementById("message").textContent = t.result;
+    }
+</script>
+
+</body>
+</html>
